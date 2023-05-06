@@ -1,0 +1,16 @@
+#!/bin/sh 
+
+# sets the wall variable to a randomly selected wallpaper from your wallpaper directory "~/pix/wall"
+wall=$(find ~/pix/wall -type f -name "*.jpg" -o -name "*.png" | shuf -n 1)
+
+# sets the wallpaper using xwallpaper
+xwallpaper --zoom $wall
+
+# clears pywal's cache
+wal -c 
+
+# generates the pywal scheme
+wal -i $wall
+
+# runs the hotkey to refresh xrdb, using xdotool
+xdotool key super+shift+r
